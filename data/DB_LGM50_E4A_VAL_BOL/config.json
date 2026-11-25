@@ -1,0 +1,19 @@
+{
+  "dataset": "lgm50",
+  "cell": "E4A",
+  "protocol": "VAL",
+  "PM": "OKane2022",
+  "dt_s": 1.0,
+  "temperature_C": 16.564508493006684,
+  "T_min_C": 12.788146353871314,
+  "T_max_C": 27.03134469239206,
+  "sampling": "I = mean over [t, t+dt); V, T at t + dt/2",
+  "sign": "I > 0 discharge",
+  "starts": "top of charge",
+  "raw_file": "Expt 4 - Drive Cycle Aging (Control)/Raw Data/Degradation Cycling/Set 1/NDK - LG M50 deg - exp 4 - rig 2 - 10degC - cell A_CC1.mpr",
+  "raw_sha256": "1f9d4f0e8259be7ac991266aa7cf0926a255923ef2b0053071f150861cc9b023",
+  "raw_start_s": 9950.46047262149,
+  "raw_end_s": 77192.99969904055,
+  "protocol_note": "two 1-h WLTP discharges with 0.3C CC-CV recharges, a 0.15 A step, a full WLTP discharge, 0.3C CC-CV",
+  "cell_ageing_T_C": 10.0
+}

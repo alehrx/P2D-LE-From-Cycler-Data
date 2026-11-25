@@ -1,0 +1,163 @@
+{
+  "name": "lgm50",
+  "kind": "lgm50",
+  "description": "LG M50T 21700 (NMC811 / graphite-SiOx, 5 Ah), Kirkaldy et al., J. Power Sources 2024, zenodo 10.5281/zenodo.10637534. Expt 4 cells A-H (drive-cycle ageing: WLTP discharge, 0.3C CC-CV charge) and Expt 5 cells A-H (1C discharge, 0.3C CC-CV); A-C at 10 C, D-E at 25 C, F-H at 40 C. Beginning-of-life checks at ~25 C (Expt 4: C/10, C/2, GITT, hybrid pulses; Expt 5: C/10 only, from the processed curves), the first ageing cycles (VAL) at the chamber temperature, 1 s.",
+  "pm": "OKane2022",
+  "nominal_Ah": 5.0,
+  "V_min": 2.5,
+  "V_max": 4.2,
+  "raw_root": "path/to/Kirkaldy_LGM50",
+  "experiments": {
+    "E4": "Expt 4 - Drive Cycle Aging (Control)",
+    "E5": "Expt 5 - Standard Cycle Aging (Control)"
+  },
+  "folder": "DB_LGM50_{cell}_{test}_BOL",
+  "top_V": 4.15,
+  "top_rest_s": 1800,
+  "cells": {
+    "E4A": {
+      "T_C": 10
+    },
+    "E4B": {
+      "T_C": 10
+    },
+    "E4C": {
+      "T_C": 10
+    },
+    "E4D": {
+      "T_C": 25
+    },
+    "E4E": {
+      "T_C": 25
+    },
+    "E4F": {
+      "T_C": 40
+    },
+    "E4G": {
+      "T_C": 40
+    },
+    "E4H": {
+      "T_C": 40
+    },
+    "E5A": {
+      "T_C": 10
+    },
+    "E5B": {
+      "T_C": 10
+    },
+    "E5C": {
+      "T_C": 10
+    },
+    "E5D": {
+      "T_C": 25
+    },
+    "E5E": {
+      "T_C": 25
+    },
+    "E5F": {
+      "T_C": 40
+    },
+    "E5G": {
+      "T_C": 40
+    },
+    "E5H": {
+      "T_C": 40
+    }
+  },
+  "tests": {
+    "C10": {
+      "check": "BoL",
+      "speed": "slow",
+      "part": 1,
+      "dt_s": 10.0,
+      "note": "C/10 (0.5 A) discharge to 2.5 V, 6 h rest, C/10 charge to 4.2 V (no CV)",
+      "source": "bol",
+      "experiments": [
+        "E4",
+        "E5"
+      ],
+      "by_experiment": {
+        "E5": {
+          "source": "processed",
+          "folder": "0.1C Voltage Curves",
+          "rpt": "RPT0",
+          "legs": [
+            "discharge",
+            "charge"
+          ],
+          "dt_s": 10.0
+        }
+      }
+    },
+    "GITT": {
+      "check": "BoL",
+      "speed": "slow",
+      "part": 3,
+      "dt_s": 1.0,
+      "note": "~24 x 0.2 A.h discharge pulses at C/2 (2.5 A), each followed by a 1 h rest",
+      "source": "bol"
+    },
+    "C2": {
+      "check": "BoL",
+      "speed": "slow",
+      "part": 2,
+      "dt_s": 1.0,
+      "note": "C/2 discharge to 2.5 V, 6 h rest, C/2 charge to 4.2 V",
+      "source": "bol"
+    },
+    "GITT_C2": {
+      "check": "BoL",
+      "speed": "slow",
+      "part": 4,
+      "dt_s": 1.0,
+      "note": "1 A.h discharge steps at C/2 with 1 h rests",
+      "source": "bol"
+    },
+    "HYB_C2": {
+      "check": "BoL",
+      "speed": "fast",
+      "part": 2,
+      "dt_s": 1.0,
+      "note": "hybrid CC-pulse discharge: C/2 base with 10 s pulses of +-10..50 %, recorded at 0.1 s",
+      "source": "bol"
+    },
+    "HYB_1C": {
+      "check": "BoL",
+      "speed": "fast",
+      "part": 3,
+      "dt_s": 1.0,
+      "note": "hybrid CC-pulse discharge: 1C base with 10 s pulses of +-10..50 %, recorded at 0.1 s",
+      "source": "bol"
+    },
+    "VAL": {
+      "source": "cycling",
+      "set": 1,
+      "dt_s": 1.0,
+      "n_full": 1,
+      "experiments": [
+        "E4",
+        "E5"
+      ],
+      "note": "first ageing cycles at the chamber temperature, from the 4 h rest at the top to the end of the CC-CV after the first full discharge",
+      "by_experiment": {
+        "E4": {
+          "note": "two 1-h WLTP discharges with 0.3C CC-CV recharges, a 0.15 A step, a full WLTP discharge, 0.3C CC-CV"
+        },
+        "E5": {
+          "n_full": 2,
+          "note": "1C discharge, 0.3C CC-CV, 0.15 A discharge to ~3.9 V, 1C discharge to 2.5 V, 0.3C CC-CV"
+        }
+      }
+    }
+  },
+  "budget": [
+    "C10",
+    "GITT"
+  ],
+  "window_data": {
+    "rest_test": "GITT",
+    "min_rest_s": 1800,
+    "ocv_test": "C10",
+    "ocv_current_A": 0.5
+  }
+}

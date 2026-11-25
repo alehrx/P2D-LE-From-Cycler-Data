@@ -1,0 +1,214 @@
+{
+  "name": "lg_precalibration",
+  "description": "LG step 0 (2026-11-24): pre-calibration at 25 C of the twelve 25 C candidates on the GITT and C/10 tail of E4D and the 1C part of the first cycle of E5D, from scratch (16 Sobol starts over the bounds); temperature terms fixed at the Mohtat case B values, b = 1.5. Windows of lg_B3.",
+  "dataset": "lgm50",
+  "surrogate": "trained_model_s42",
+  "pm": "OKane2022",
+  "T_ref_C": 25.0,
+  "model": {
+    "electrolyte": "multislice",
+    "n_slices": 10,
+    "electrolyte_set": "ORegan2022",
+    "electrolyte_T": "set",
+    "geometry": "groups",
+    "electrolyte_groups": "material",
+    "entropic": "cell",
+    "particles": "fv",
+    "n_fine": 51,
+    "d_law": true,
+    "slice_ratio": 4.0,
+    "tdf_T": true,
+    "theta_ref_C": 10.0,
+    "newton": [
+      12,
+      24
+    ],
+    "jump_start": "shift",
+    "hysteresis": {
+      "q_h_Ah": 0.1,
+      "h0": 1.0
+    }
+  },
+  "split": {
+    "dynamics": [
+      "E4A",
+      "E4D",
+      "E4F",
+      "E5A",
+      "E5D",
+      "E5F"
+    ],
+    "validation": [
+      "E4B",
+      "E4E",
+      "E4G",
+      "E5B",
+      "E5E",
+      "E5G"
+    ],
+    "exclude": [
+      "E4C",
+      "E4H",
+      "E5C",
+      "E5H"
+    ]
+  },
+  "step1": {
+    "cells_U_p": [
+      "E4D"
+    ],
+    "ocv_test": "C10",
+    "rest_test": "GITT",
+    "y100": 0.27,
+    "y_end": 0.9,
+    "rest_min_s": 1800,
+    "x100_range": [
+      0.6,
+      0.99
+    ],
+    "Q_n_range": [
+      4.9,
+      9.0
+    ],
+    "U_p_smooth": 0.005,
+    "tails": "literature",
+    "ocv_rest_anchors": true,
+    "U_p_to_last_rest": true,
+    "top_anchor_test": "VAL",
+    "top_weight": 400.0,
+    "top_anchor_s": 3600.0,
+    "U_n_bottom_anchor": true,
+    "bottom_weight": 0.0,
+    "U_n": "blend:Ai2020:Chen2020_composite:0.10",
+    "window_cells": [
+      "E4A",
+      "E4D",
+      "E4F"
+    ],
+    "capacity_test": "C10",
+    "capacity_I_A": 0.4
+  },
+  "dynamics": {
+    "tests": [
+      {
+        "test": "VAL",
+        "coarsen": 5,
+        "duration_s": 30600,
+        "knee_weight": 2.0,
+        "knee_V": 3.2,
+        "cells": [
+          "E5D"
+        ]
+      },
+      {
+        "test": "GITT",
+        "coarsen": 31,
+        "fine": 61,
+        "transients_s": 60,
+        "knee_weight": 2.0,
+        "knee_V": 3.2,
+        "cells": [
+          "E4D"
+        ]
+      },
+      {
+        "test": "C10",
+        "coarsen": 3,
+        "from_discharge": true,
+        "from_q": 4.3,
+        "duration_s": 9000,
+        "cells": [
+          "E4D"
+        ],
+        "axis_shift": {
+          "E4D": -0.114
+        },
+        "knee_weight": 2.0,
+        "knee_V": 3.2,
+        "h0": 0.0
+      }
+    ],
+    "names": [
+      "theta_n",
+      "theta_p",
+      "I0_n",
+      "I0_p",
+      "R_e",
+      "eps_n",
+      "eps_p",
+      "r_np",
+      "De_f",
+      "L_e",
+      "l_s",
+      "eps_s"
+    ],
+    "lb": [
+      192.0,
+      404.0,
+      0.61,
+      0.36,
+      0.00035,
+      0.15,
+      0.25,
+      0.3,
+      0.5,
+      0.0001,
+      0.03,
+      0.35
+    ],
+    "ub": [
+      231000.0,
+      25065.0,
+      69.3,
+      42.8,
+      0.0137,
+      0.5,
+      0.5,
+      0.8,
+      2.5,
+      0.00025,
+      0.3,
+      0.55
+    ],
+    "fixed": {
+      "brugg": 1.5,
+      "Ea_s": 0.0,
+      "dUdT_p": 0.0,
+      "win_x100": 1.0,
+      "win_Q_n": 1.0,
+      "R_contact": 0.0,
+      "dUdT_n": 0.0,
+      "Dp_drop": 1.0,
+      "Dp_shape": 1.0,
+      "Dp_wsurf": 1.0,
+      "Ea_Dn": 67708.0,
+      "Ea_Dp": 39663.0,
+      "Ea_r": 44600.0,
+      "dUdT0": 0.00039,
+      "dEa_De": -6431.0
+    }
+  },
+  "lm": {
+    "starts": 16,
+    "h": 0.001,
+    "max_iter": 25,
+    "seed": 1,
+    "prune": [
+      [
+        4,
+        8
+      ],
+      [
+        8,
+        4
+      ],
+      [
+        14,
+        2
+      ]
+    ],
+    "respawn": {
+      "frac": 1.0
+    }
+  }
+}

@@ -1,0 +1,7 @@
+# tested with Python 3.12, torch 2.6.0+cu126, numpy 1.26.4, scipy 1.13.1, pandas 2.3.3, matplotlib 3.10.8, pybamm 25.8.0
+numpy
+scipy
+pandas
+matplotlib
+torch          # CUDA build recommended; the CPU works but is much slower
+pybamm         # only as a database of parameter sets and open-circuit potentials (no PyBaMM simulation is run)

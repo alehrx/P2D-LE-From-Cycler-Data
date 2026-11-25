@@ -1,0 +1,18 @@
+{
+  "dataset": "lgm50",
+  "cell": "E4G",
+  "protocol": "C10",
+  "PM": "OKane2022",
+  "dt_s": 10.0,
+  "temperature_C": 25.926001992647638,
+  "T_min_C": 24.327525769878402,
+  "T_max_C": 27.238292582104446,
+  "sampling": "I = mean over [t, t+dt); V, T at t + dt/2",
+  "sign": "I > 0 discharge",
+  "starts": "top of charge",
+  "raw_file": "Expt 4 - Drive Cycle Aging (Control)/Raw Data/Performance Checks/BoL/Slow/NDK - LG M50 deg - exp 4 - rig 5 - 40degC - cell G - BoL (slow)_01_MB_CE4.mpt",
+  "raw_sha256": "b18f873edd179f373f4eb25e1d77e54b48e1b43dc909ff2aa73672732f71769f",
+  "raw_start_s": 10003.71247515082,
+  "protocol_note": "C/10 (0.5 A) discharge to 2.5 V, 6 h rest, C/10 charge to 4.2 V (no CV)",
+  "cell_ageing_T_C": 40.0
+}

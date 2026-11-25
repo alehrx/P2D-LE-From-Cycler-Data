@@ -1,0 +1,18 @@
+{
+  "dataset": "lgm50",
+  "cell": "E5F",
+  "protocol": "C10",
+  "PM": "OKane2022",
+  "dt_s": 10.0,
+  "temperature_C": 25.22674375968659,
+  "T_min_C": 23.76398930500059,
+  "T_max_C": 26.237069444681023,
+  "sampling": "I = mean over [t, t+dt); V, T at t + dt/2",
+  "sign": "I > 0 discharge",
+  "starts": "top of charge",
+  "raw_file": "Expt 5 - Standard Cycle Aging (Control)/Processed Timeseries Data/0.1C Voltage Curves/Cell F/Expt 5 - cell F - RPT0 - 0.1C discharge data.csv;Expt 5 - Standard Cycle Aging (Control)/Processed Timeseries Data/0.1C Voltage Curves/Cell F/Expt 5 - cell F - RPT0 - 0.1C charge data.csv",
+  "raw_sha256": "f788e78dfb39f986f0677bf86042a8a92a5f80e957325e7b33a39b10dd0e855f;60b1d6b8b3d192fe1db040ef8d7660d3df11d5b8fc7b773390150cb61a5df074",
+  "raw_start_s": 17249.37881930149,
+  "protocol_note": "C/10 (0.5 A) discharge to 2.5 V, 6 h rest, C/10 charge to 4.2 V (no CV)",
+  "cell_ageing_T_C": 40.0
+}

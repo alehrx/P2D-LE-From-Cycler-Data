@@ -1,0 +1,30 @@
+{
+  "name": "mohtat",
+  "kind": "mohtat",
+  "description": "University of Michigan Mohtat NMC532 / graphite 5 Ah pouch cells, beginning of life. 21 cells: room 25 C (01, 04, 07, 10, 13, 16, 19), cold -5 C (02, 05, ...), hot 45 C (03, 06, ...). HPPC and C/20 at ~25 C for every cell; the ageing cycles (VAL) at the cell's own temperature.",
+  "pm": "Mohtat2020",
+  "nominal_Ah": 5.0,
+  "V_min": 3.0,
+  "V_max": 4.2,
+  "folder": "DB_REAL_{cell}_{test}_BOL",
+
+  "cells": {
+    "C01": {"T_C": 25}, "C02": {"T_C": -5}, "C03": {"T_C": 45},
+    "C04": {"T_C": 25}, "C05": {"T_C": -5}, "C06": {"T_C": 45},
+    "C07": {"T_C": 25}, "C08": {"T_C": -5}, "C09": {"T_C": 45},
+    "C10": {"T_C": 25}, "C11": {"T_C": -5}, "C12": {"T_C": 45},
+    "C13": {"T_C": 25}, "C14": {"T_C": -5}, "C15": {"T_C": 45},
+    "C16": {"T_C": 25}, "C17": {"T_C": -5}, "C18": {"T_C": 45},
+    "C19": {"T_C": 25}, "C20": {"T_C": -5}, "C21": {"T_C": 45}
+  },
+
+  "tests": {
+    "HPPC":    {"note": "per ~10 % SOC: C/2 step, 30 min rest, 1C discharge and charge pulses of 9 s, rests with EIS; 1 s"},
+    "C20":     {"note": "C/20 charge from the bottom to 4.2 V (no CV), rest; 10 s"},
+    "VAL":     {"note": "the first ageing cycles at the cell's own temperature (drive cycle for 19-21); 10 s"},
+    "CRATE1C": {"note": "rest at the bottom, continuous 1C charge to 4.2 V, rest; 10 s"}
+  },
+
+  "budget": ["HPPC", "C20"],
+  "window_data": {"rest_test": "HPPC", "min_rest_s": 1200, "ocv_test": "C20", "ocv_current_A": 0.25}
+}

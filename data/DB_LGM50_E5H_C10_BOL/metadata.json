@@ -1,0 +1,7 @@
+{
+  "date": "2026-11-06T08:18:33.071816+00:00",
+  "description": "LG M50T E5H, C10 (Kirkaldy 2024), resampled to 10 s",
+  "dataset": "Expt 5 - Standard Cycle Aging (Control)/Processed Timeseries Data/0.1C Voltage Curves/Cell H/Expt 5 - cell H - RPT0 - 0.1C discharge data.csv;Expt 5 - Standard Cycle Aging (Control)/Processed Timeseries Data/0.1C Voltage Curves/Cell H/Expt 5 - cell H - RPT0 - 0.1C charge data.csv",
+  "n_samples": 9148,
+  "duration_h": 25.408333333333335
+}

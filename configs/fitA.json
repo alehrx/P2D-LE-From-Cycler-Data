@@ -1,0 +1,173 @@
+{
+  "name": "fitA",
+  "description": "Case A: measured anode OCP (half-cells of the dataset authors, x100 = 0.833), joint fit of the selected groups on the first cycles of cells 07, 08, 09 and the HPPC and C/20 of cell 07; every cell keeps the common stoichiometric limits with Q_n, Q_p from its own C/20 capacity.",
+  "dataset": "mohtat",
+  "surrogate": "trained_model_s42",
+  "pm": "Mohtat2020",
+  "T_ref_C": 25.0,
+  "model": {
+    "electrolyte": "multislice",
+    "n_slices": 10,
+    "electrolyte_set": "ORegan2022",
+    "electrolyte_T": "set",
+    "geometry": "groups",
+    "electrolyte_groups": "material",
+    "entropic": "cell",
+    "particles": "fv",
+    "n_fine": 51,
+    "d_law": true,
+    "slice_ratio": 4.0,
+    "tdf_T": true,
+    "theta_ref_C": 0.0,
+    "newton": [
+      12,
+      24
+    ],
+    "jump_start": "shift"
+  },
+  "split": {
+    "dynamics": [
+      "C07",
+      "C08",
+      "C09"
+    ]
+  },
+  "step1": {
+    "cells_U_p": [
+      "C07",
+      "C08",
+      "C09"
+    ],
+    "y100": 0.4,
+    "y_end": 0.95,
+    "rest_min_s": 1200,
+    "x100_range": [
+      0.6,
+      0.99
+    ],
+    "Q_n_range": [
+      5.6,
+      6.3
+    ],
+    "x100_fixed": 0.8334,
+    "tails": "literature"
+  },
+  "dynamics": {
+    "tests": [
+      {
+        "test": "VAL",
+        "knee_weight": 2.0,
+        "knee_V": 3.45
+      },
+      {
+        "test": "HPPC",
+        "coarsen": 31,
+        "fine": 61,
+        "transients_s": 60,
+        "cells": [
+          "C07"
+        ],
+        "knee_weight": 2.0,
+        "knee_V": 3.45
+      },
+      {
+        "test": "C20",
+        "coarsen": 3,
+        "from_discharge": true,
+        "from_q": 3.9,
+        "cells": [
+          "C07"
+        ],
+        "axis_shift": {
+          "C07": 0.064
+        },
+        "knee_weight": 2.0,
+        "knee_V": 3.45
+      }
+    ],
+    "weights_note": "one score per test plus the HPPC transients, equal weights: VAL 9/18, HPPC 3/18, transients 3/18, C/20 3/18. C/20 from 3.9 A.h discharged (its knee; axis_shift: step1.json hppc_shift_Ah); knee_q: one more score on VAL and C/20 (mA.h as mV); theta >= 10 s (exact FV particles: no sub-step constraint)",
+    "names": [
+      "theta_n",
+      "theta_p",
+      "I0_p",
+      "R_e",
+      "Ea_Dn",
+      "Ea_Dp",
+      "Ea_r",
+      "dUdT0",
+      "eps_p",
+      "r_np",
+      "De_f",
+      "dEa_De"
+    ],
+    "lb": [
+      1000.0,
+      100.0,
+      1.83,
+      0.00144,
+      5000.0,
+      10000.0,
+      11800.0,
+      0.0,
+      0.25,
+      0.3,
+      0.5,
+      -20000.0
+    ],
+    "ub": [
+      300000.0,
+      1000000.0,
+      10.95,
+      0.0258,
+      90000.0,
+      80600.0,
+      65000.0,
+      0.0006,
+      0.5,
+      0.7,
+      2.5,
+      80000.0
+    ],
+    "fixed": {
+      "Ea_s": 0.0,
+      "dUdT_p": 0.0,
+      "l_s": 0.14942501552282658,
+      "eps_s": 0.4022893804723428,
+      "brugg": 1.5,
+      "win_Q_n": 1.0,
+      "win_x100": 1.0,
+      "dUdT_n": 0.0,
+      "Dp_drop": 1.0,
+      "Dp_shape": 1.0,
+      "Dp_wsurf": 1.0,
+      "I0_n": 1229.19,
+      "L_e": 0.000141,
+      "R_contact": 0.0,
+      "eps_n": 0.3892
+    },
+    "thermal": "reference"
+  },
+  "lm": {
+    "starts": 32,
+    "h": 0.001,
+    "max_iter": 40,
+    "seed": 1,
+    "prune": [
+      [
+        6,
+        16
+      ],
+      [
+        12,
+        8
+      ]
+    ],
+    "respawn": {
+      "frac": 1.0
+    },
+    "center": {
+      "study": "precalibration",
+      "width": 0.4
+    }
+  }
+}

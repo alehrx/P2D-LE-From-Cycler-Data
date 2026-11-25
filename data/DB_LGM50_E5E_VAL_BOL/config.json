@@ -1,0 +1,19 @@
+{
+  "dataset": "lgm50",
+  "cell": "E5E",
+  "protocol": "VAL",
+  "PM": "OKane2022",
+  "dt_s": 1.0,
+  "temperature_C": 26.823321872821705,
+  "T_min_C": 22.136365277286743,
+  "T_max_C": 37.592755106750204,
+  "sampling": "I = mean over [t, t+dt); V, T at t + dt/2",
+  "sign": "I > 0 discharge",
+  "starts": "top of charge",
+  "raw_file": "Expt 5 - Standard Cycle Aging (Control)/Raw Data/Degradation Cycling/Set 1/NDK - LG M50 deg - exp 5 - rig 2 - 25degC - cell E_CC8.mpr",
+  "raw_sha256": "e337d136060325e14b09c0c07f5adb7b9651cdeb84784a6b4c5c0c165eb192d4",
+  "raw_start_s": 10044.970477110473,
+  "raw_end_s": 89207.78630328411,
+  "protocol_note": "1C discharge, 0.3C CC-CV, 0.15 A discharge to ~3.9 V, 1C discharge to 2.5 V, 0.3C CC-CV",
+  "cell_ageing_T_C": 25.0
+}
