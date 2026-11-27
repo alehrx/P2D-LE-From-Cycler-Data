@@ -5,3 +5,4 @@ __pycache__/
 lm_state*.npz
 runs/studies/*/figures/
 runs/fig_*
+!runs/studies/fitB_trace/lm_state_*.npz

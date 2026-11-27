@@ -1,7 +1,7 @@
 """
 fig_cases_grid.py
 =================
-Fig. 8 of the paper: measured and predicted voltage of the first cycle (VAL) of fifteen held-out cells under the
+Fig. 9 of the paper: measured and predicted voltage of the first cycle (VAL) of fifteen held-out cells under the
 three cases A, B, C. Rows: ageing protocol (Table 2, labelled on the left); columns: chamber temperature (-5, 25,
 45 C, titled on top).
 
@@ -32,8 +32,8 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), 
 sys.path.insert(0, os.path.join(ROOT, 'scripts'))
 from fig_cases_voltage import CASES, N_MARK, mm, simulate, with_suffix     # noqa: E402  (also sets the style and cwd)
 
-STYLE = {'A': ('#1F77B4', 'o', 'case A'), 'B': ('#E1A100', 's', 'case B'), 'C': ('#2CA02C', '^', 'case C'),
-         'C+': ('#9467BD', 'D', 'case C+')}
+STYLE = {'A': ('#0072B2', 'o', 'case A'), 'B': ('#D55E00', 's', 'case B'), 'C': ('#009E73', '^', 'case C'),
+         'C+': ('#CC79A7', 'D', 'case C+')}
 # rows = protocols (Table 2), columns = chamber temperature (-5, 25, 45 C), 15 held-out cells
 CELLS = ['C14', 'C13', 'C15', 'C02', 'C01', 'C03', 'C05', 'C04', 'C06', 'C11', 'C10', 'C12', 'C20', 'C19', 'C21']
 ROWS = ['C/5 / C/5\n50 % DoD', 'C/5 / C/5\n100 % DoD', '1.5C / 1.5C\n100 % DoD', 'C/5 / 1.5C\n100 % DoD',

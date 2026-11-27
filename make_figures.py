@@ -1,9 +1,9 @@
 """
 make_figures.py
 ===============
-The result figures of the paper for the Mohtat cells (Fig. 8: measured and predicted voltage of fifteen held-out
-cells; Fig. 9: held-out error per cell and by C-rate, state of charge and temperature) for the chosen parameter
-sets. Fig. 10 (LG M50T): python scripts/fig_lg_grid.py --cases A:lgA B:lgB C:lgC --out figures/fig10_lg_grid
+The result figures of the paper for the Mohtat cells (Fig. 9: measured and predicted voltage of fifteen held-out
+cells; Fig. 10: held-out error per cell and by C-rate, state of charge and temperature) for the chosen parameter
+sets. Fig. 11 (LG M50T): python scripts/fig_lg_grid.py --cases A:lgA B:lgB C:lgC --out figures/fig11_lg_grid
 
     python make_figures.py                 # cases A, B and C of the paper
     python make_figures.py --sets B        # one set only
@@ -32,7 +32,7 @@ def main():
     a = ap.parse_args()
     cases = [s if ':' in s else '%s:%s' % (s, SETS[s]) for s in a.sets]
     os.makedirs(os.path.dirname(a.out), exist_ok=True)
-    # the error samples of each set (runs/studies/<study>/figures/error_bins.npz), which Fig. 9 bins
+    # the error samples of each set (runs/studies/<study>/figures/error_bins.npz), which Fig. 10 bins
     studies = [c.split(':')[1] for c in cases]
     cmd = [sys.executable, os.path.join(ROOT, 'scripts', 'error_bins.py'),
            *[os.path.join(ROOT, 'configs', s + '.json') for s in studies], '--out', os.path.join(ROOT, 'runs')]

@@ -1,7 +1,7 @@
 """
 fig_error_summary.py
 ====================
-Panels (b)-(d) of Fig. 9 (drawn by fig_cases_errors.py): where the calibrated model errs on the held-out cells.
+Panels (b)-(d) of Fig. 10 (drawn by fig_cases_errors.py): where the calibrated model errs on the held-out cells.
 Mean absolute voltage error (marker) and the 5-95 % range of the absolute error (whisker) of every scored
 sample of the held-out first cycles, binned (a) by C-rate, (b) by state of charge and (c) by chamber
 temperature. Bins with fewer than 30 samples are omitted.

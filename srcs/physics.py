@@ -44,7 +44,7 @@ def truth_groups(pm: str = 'Mohtat2020', T: float = T_REF) -> dict:
     """The groups implied by a PyBaMM parameter set at temperature T [K].
 
     Q, x100/y100, theta and I* are exact translations of the set. R0, R_c and tau_e have no
-    unique DFN counterpart: the values returned are the SPMe leading-order ones (electrolyte
+    unique P2D counterpart: the values returned are the SPMe leading-order ones (electrolyte
     + solid ohmic; first salt-diffusion mode), i.e. a REFERENCE, not a truth.
     """
     import pybamm

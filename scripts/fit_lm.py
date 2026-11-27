@@ -75,6 +75,8 @@ def main():
     ap.add_argument('--starts', type=int)
     ap.add_argument('--iters', type=int)
     ap.add_argument('--fresh', action='store_true', help='ignore a saved search state (lm_state.npz)')
+    ap.add_argument('--keep-states', action='store_true',
+                    help='also keep the state after every iteration as lm_state_<it>.npz (the path of the search)')
     a = ap.parse_args()
     st = S.load(a.config)
     os.makedirs(st.path(''), exist_ok=True)
@@ -130,6 +132,9 @@ def main():
             try:
                 np.savez(tmp, sig=np.array(sig), **state)
                 os.replace(tmp, state_path)
+                if a.keep_states:
+                    import shutil
+                    shutil.copy(state_path, st.path('lm_state_%02d.npz' % int(state['iteration'])))
                 return
             except OSError as e:
                 err = e

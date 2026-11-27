@@ -1,22 +1,29 @@
-# Identifying a multi-particle battery model with linearised electrolyte from cycler data alone
+# Identifying a pseudo-two-dimensional battery model with linearised electrolyte from cycler data alone
 
-Code, data and identified parameter sets of the paper (submitted). The model is a Doyle–Fuller–Newman model solved
-with a few particles through the thickness of each electrode and a linearised electrolyte (MPM-LE), written in
-dimensionless groups; the groups are identified from the cycler data of commercial NMC532/graphite pouch cells at
-−5, 25 and 45 °C and validated on 18 held-out cells. The same pipeline is applied to a second cell type, the LG M50T
-21700 NMC811/graphite–SiOx cell, calibrated at 10, 25 and 40 °C and validated on six held-out cells.
+Code, data and identified parameter sets of the paper (submitted). The model is the pseudo-two-dimensional (P2D)
+model of Doyle, Fuller and Newman with two simplifications, infinite solid conductivity and the transport properties
+of the electrolyte taken at the rest concentration of the salt, which makes the electrolyte linear (P2D-LE). Each
+electrode is discretised in x by a few slices, graded towards the separator, with one particle per slice. The model
+is written in dimensionless groups; the groups are identified from the cycler data of commercial NMC532/graphite
+pouch cells at −5, 25 and 45 °C and validated on 18 held-out cells. The same procedure is applied to a second cell
+type, the LG M50T 21700 NMC811/graphite–SiOx cell, calibrated at 10, 25 and 40 °C and validated on six held-out cells.
+
+The identification runs in four steps, as in the paper: step 1, the open-circuit side (cathode OCP and electrode
+windows); step 2, the selection of the groups, by a pre-calibration at 25 °C (step 2.1) and a local screening around
+it (step 2.2); step 3, the final fit of the selected groups on all calibration tests at all temperatures; step 4,
+the prediction of the held-out cells.
 
 ## Contents
 
 | Folder | What |
 |---|---|
-| `paper_notebook.ipynb` | the digital version of the paper: Figs. 4, 8, 9, 10 and Tables 2-9 of Section 3, made by the paper's own scripts from the saved parameter sets (set `RUN_FITS = True` to rerun step 1 and the fit) |
-| `srcs/` | the model (`ms_model.py`, `ms_fv.py`: batched multi-slice model with exact finite-volume particles, on a GPU; `electrolyte_modes.py`: the modal linear electrolyte), groups and windows (`identification.py`, `window.py`), the study wrapper (`study.py`), the batched multi-start Levenberg–Marquardt search (`optimizers.py`), the Fisher/collinearity analysis (`identifiability.py`), the dataset readers (`datasets/`: `mohtat.py`, `lgm50.py`), the OCV hysteresis term of the LG cell (`identification.hysteresis_voltage`) |
-| `scripts/` | step 0: `fit_lm.py` on `configs/precalibration.json` (pre-calibration) and `screening_local.py` (sensitivities and correlations around it, Table 4); step 1: `step1_window.py` (cathode OCP and electrode windows); step 2: `fit_lm.py` (joint fit); `new_study.py` (a study with your own choice of cells); the paper's figure scripts (`fig_groups.py` Fig. 4, `fig_cases_grid.py` Fig. 8, `error_bins.py` + `fig_cases_errors.py` Fig. 9, `fig_lg_grid.py` Fig. 10); for the LG cell also `hysteresis_c10_gitt.py` (the OCV hysteresis, step 1) and `select_groups_rule.py` (the selection rule of Section 3.3 applied to a screening) |
-| `configs/` | the three cases of the paper: `fitA` (measured anode OCP), `fitB` (generic graphite OCP), `caseC` (groups of B, mean capacity), the step-0 studies `precalibration` (the pre-calibration at 25 °C, around which the screening is computed and the fits draw their starts) and `screening` (Table 4); the LG cell: `lgA` (anode OCP of the cell itself), `lgB` (generic blended anode), `lgC` (groups of B, mean capacity), `lg_precalibration` and `lg_screening` (Table 9); `datasets/mohtat.json` and `datasets/lgm50.json` describe the data |
+| `paper_notebook.ipynb` | the digital version of the paper: Figs. 4 and 8–11 and Tables 2–10 of Section 3, made by the paper's own scripts from the saved parameter sets (set `RUN_FITS = True` to rerun steps 1 and 3) |
+| `srcs/` | the model (`ms_model.py`, `ms_fv.py`: batched slice model with exact finite-volume particles, on a GPU; `electrolyte_modes.py`: the modal linearised electrolyte), groups and windows (`identification.py`, `window.py`), the study wrapper (`study.py`), the batched multi-start Levenberg–Marquardt search (`optimizers.py`), the Fisher/collinearity analysis (`identifiability.py`), the dataset readers (`datasets/`: `mohtat.py`, `lgm50.py`), the OCV hysteresis term of the LG cell (`identification.hysteresis_voltage`) |
+| `scripts/` | step 1: `step1_window.py` (cathode OCP and electrode windows); step 2.1: `fit_lm.py` on `configs/precalibration.json`; step 2.2: `screening_local.py` (sensitivities and correlations around the pre-calibrated point, Table 4); step 3: `fit_lm.py` (final fit); `new_study.py` (a study with your own choice of cells); the paper's figure scripts (`fig_groups.py` Fig. 4, `fig_fit_progress.py` Fig. 8, `fig_cases_grid.py` Fig. 9, `error_bins.py` + `fig_cases_errors.py` Fig. 10, `fig_lg_grid.py` Fig. 11); for the LG cell also `hysteresis_c10_gitt.py` (the OCV hysteresis, step 1) and `select_groups_rule.py` (the selection rule of Section 3.3 applied to a screening) |
+| `configs/` | the three cases of the paper: `fitA` (measured anode OCP), `fitB` (generic graphite OCP), `caseC` (groups of B, mean capacity); `fitB_trace` (the fit of case B rerun with `--keep-states`, the path of the search in Fig. 8); the step-2 studies `precalibration` (step 2.1, around which the screening is computed and the final fits draw their initial candidates) and `screening` (step 2.2, Table 4); the LG cell: `lgA` (anode OCP of the LG M50), `lgB` (generic blended anode), `lgC` (groups of B, mean capacity), `lg_precalibration` and `lg_screening` (Table 10); `datasets/mohtat.json` and `datasets/lgm50.json` describe the data |
 | `results/` | saved results the notebook shows: online capacity (Table 7) and ablation of the calibration cycles (Table 8) |
-| `figures/` | Figs. 4, 8, 9 and 10 as made by the notebook |
-| `runs/studies/<case>/` | the identified groups (`dynamics.json`), the electrode windows of every cell (`windows.json`), the derived cathode OCP (`ocp_correction.json`) and the step-1 details (`step1.json`); for the LG cases also the OCV hysteresis (`hysteresis.json`) |
+| `figures/` | Figs. 4 and 8–11 as made by the notebook |
+| `runs/studies/<case>/` | the identified groups (`dynamics.json`), the electrode windows of every cell (`windows.json`), the derived cathode OCP (`ocp_correction.json`) and the step-1 details (`step1.json`); for the LG cases also the OCV hysteresis (`hysteresis.json`); for Fig. 8 the iterations of the searches (`lm.log`) and the state after each of the first iterations of `fitB_trace` (`lm_state_<it>.npz`) |
 | `data/` | the signals of the 21 cells at beginning of life: C/20 cycle (`DB_REAL_Cxx_C20_BOL`), HPPC (`..._HPPC_BOL`) and first ageing cycle (`..._VAL_BOL`), resampled; `cycles.csv` + `config.json` per test; LG M50T: C/10 cycle (`DB_LGM50_<cell>_C10_BOL`), GITT (`..._GITT_BOL`, Expt 4) and first ageing cycles (`..._VAL_BOL`) of the twelve cells used |
 
 Calibration cells: 07, 08, 09 (2C at 25, −5, 45 °C), with the HPPC and C/20 of cell 07; the other 18 cells are held
@@ -29,37 +36,38 @@ cycles) and E5B, E5E, E5G (first 1C cycle).
 
 ```
 pip install -r requirements.txt
-python make_figures.py                # Fig. 8 and Fig. 9 of the paper, cases A, B, C -> figures/
+python make_figures.py                # Fig. 9 and Fig. 10 of the paper, cases A, B, C -> figures/
 python make_figures.py --sets B       # one parameter set only
+python scripts/fig_fit_progress.py    # Fig. 8
 ```
 
 ## Re-identify
 
 ```
-python scripts/fit_lm.py configs/precalibration.json --fresh                        # step 0: pre-calibration at 25 C
-python scripts/screening_local.py screening precalibration --r 40 --wmin 0.1        # step 0: screening (Table 4)
 python scripts/step1_window.py configs/fitB.json                                  # step 1: windows and cathode OCP
 python scripts/anchor_window.py fitB fitB                                         # step 1: common window of the calibration cells
-python scripts/fit_lm.py configs/fitB.json --fresh                                # step 2: joint fit (~40 min on a GPU)
+python scripts/fit_lm.py configs/precalibration.json --fresh                      # step 2.1: pre-calibration at 25 C
+python scripts/screening_local.py screening precalibration --r 40 --wmin 0.1      # step 2.2: screening (Table 4)
+python scripts/fit_lm.py configs/fitB.json --fresh                                # step 3: final fit (~40 min on a GPU)
 ```
 
 LG M50T (case B):
 
 ```
-python scripts/fit_lm.py configs/lg_precalibration.json --fresh                     # step 0: pre-calibration at 25 C
-python scripts/screening_local.py lg_screening lg_precalibration --r 40 --wmin 0.1  # step 0: screening (Table 9)
-python scripts/select_groups_rule.py runs/screening/lg_screening_local/screening_local.json configs/lg_precalibration.json configs/lgB.json lgB
 python scripts/step1_window.py configs/lgB.json                                     # step 1: windows and cathode OCP
 python scripts/mean_window.py configs/lgB.json                                      # step 1: common window of the window cells
 python scripts/hysteresis_c10_gitt.py configs/lgB.json                              # step 1: OCV hysteresis
-python scripts/fit_lm.py configs/lgB.json --fresh                                   # step 2: joint fit
+python scripts/fit_lm.py configs/lg_precalibration.json --fresh                     # step 2.1: pre-calibration at 25 C
+python scripts/screening_local.py lg_screening lg_precalibration --r 40 --wmin 0.1  # step 2.2: screening (Table 10)
+python scripts/select_groups_rule.py runs/screening/lg_screening_local/screening_local.json configs/lg_precalibration.json configs/lgB.json lgB
+python scripts/fit_lm.py configs/lgB.json --fresh                                   # step 3: final fit
 ```
 
 `scripts/screening.py`, `screening_model.py` and `sensitivity.py` are helpers of `screening_local.py` (the unit cube of
 the optimiser, the Morris design, the collinearity index); their own command lines run the earlier global screening,
 which the paper does not use.
 
-The configs of the three cases draw their 32 Sobol starts in a box around a pre-calibration,
+The configs of the three cases draw their 32 initial candidates (scrambled Sobol) in a box around the pre-calibration,
 `"lm": {"center": {"study": "precalibration", "width": 0.4}}`: the groups the pre-calibration
 fitted are drawn within +-0.2 of their unit-cube range around its values (diffusion times moved from 25 C to the
 fit's reference temperature with each start's own activation energy), the temperature terms over their whole range.

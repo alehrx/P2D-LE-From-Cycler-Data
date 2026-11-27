@@ -1,7 +1,7 @@
 """
 screening_model.py
 ==================
-Helper of screening_local.py (collinearity, correlation). Standalone: step 0 on the model alone, which candidate groups the calibration tests can
+Helper of screening_local.py (collinearity, correlation). Standalone: step 2 on the model alone, which candidate groups the calibration tests can
 see, and which of them the tests can tell apart, before any fit. No measured voltage and no fitted value enters:
 the tests give only the current, the temperature and the scored samples, step 1 gives the electrode windows.
 

@@ -1,13 +1,13 @@
 """
 fig_cases_errors.py
 ===================
-Fig. 9 of the paper: held-out error of the three cases A -> B -> C in one figure:
+Fig. 10 of the paper: held-out error of the three cases A -> B -> C in one figure:
     (a) first-cycle RMSE of every held-out cell, three bars per cell, cells grouped by chamber temperature
         (scripts/fig_cases_heldout.py, cached runs/studies/<study>/heldout_val_rmse.csv);
     (b)-(d) mean absolute error and 5-95 % range of every scored sample of the held-out first cycles, binned by
         C-rate, state of charge and chamber temperature (scripts/fig_error_summary.py, cached
         runs/studies/<study>/figures/error_bins.npz from scripts/error_bins.py).
-Colours: A blue, B yellow, C green.
+Colours: A blue, B orange, C green.
 
     python scripts/fig_cases_errors.py [--cases A:<study> B:<study> C:<study>] [--out figures/fig_cases_errors]
 """

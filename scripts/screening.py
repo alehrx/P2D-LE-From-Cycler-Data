@@ -69,7 +69,7 @@ TYPICAL = {
     **{'dUdTk%d' % i: (-6e-4, 6e-4) for i in range(8)},   # full-cell entropic coefficient [V/K]
 }
 # literature box (--box literature): the dynamic groups bounded by the published values for graphite/NMC, measured
-# and parameter sets, converted to this cell's groups (paper Table 2; the stack groups keep TYPICAL). Sources: theta
+# and parameter sets, converted to this cell's groups (paper Table 5; the stack groups keep TYPICAL). Sources: theta
 # = R^2/D_s per paper (Ai 2020 .. Chen 2020 average; NMC Hosseinzadeh 2018 .. Capron 2018); I0 = 3 Q j0 / (F c_max R)
 # with Q_n, Q_p of step 1 (O'Regan 2022 .. Smith 2007; O'Regan 2022 .. Chen 2020); R_e from R Q = 0.007-0.125
 # Ohm Ah, R_c from tab and contact resistances (Hosseinzadeh 2018, Das 2019); activation energies (O'Regan 2022,

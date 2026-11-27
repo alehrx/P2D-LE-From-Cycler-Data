@@ -1,0 +1,7 @@
+fit_lm fitB_trace: 5 tests ['C07 VAL', 'C08 VAL', 'C09 VAL', 'C07 HPPC', 'C07 C20'] | 12 parameters | 32 starts, 40 iterations, h 0.001 | knee-weighted samples 558
+lm iteration 1: 32 active, best sum r^2 827.3 (start 11), median of the active 4.477e+04, 544 evaluations, 491 s
+lm iteration 2: 32 active, best sum r^2 665 (start 23), median of the active 2.728e+04, 1056 evaluations, 1502 s
+lm iteration 3: 32 active, best sum r^2 528.2 (start 23), median of the active 1.812e+04, 1568 evaluations, 1577 s
+lm iteration 4: 32 active, best sum r^2 442.8 (start 23), median of the active 1.292e+04, 2080 evaluations, 1889 s
+lm iteration 5: 32 active, best sum r^2 397.9 (start 23), median of the active 1.126e+04, 2592 evaluations, 2052 s
+lm respawn at iteration 6: 16 of the 16 pruned starts restarted around start 23 (sum r^2 397.9; their best 391), unit-cube sd 0.003..0.0443

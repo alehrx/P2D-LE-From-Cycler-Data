@@ -2,9 +2,9 @@
 fig_cases_heldout.py
 ====================
 Held-out first-cycle (VAL) RMSE of every held-out pouch cell under the three cases A -> B -> C:
-one group of three bars per cell (A blue, B yellow, C green), cells grouped by chamber temperature, the mean of
-each case per temperature printed above its group. heldout() gives the per-cell values to the notebook, to Fig. 9
-(fig_cases_errors.py) and to Fig. 10 (fig_lg_grid.py).
+one group of three bars per cell (A blue, B orange, C green), cells grouped by chamber temperature, the mean of
+each case per temperature printed above its group. heldout() gives the per-cell values to the notebook, to Fig. 10
+(fig_cases_errors.py) and to Fig. 11 (fig_lg_grid.py).
 
     A  measured anode OCP, each held-out cell's own C/20 capacity                  (fitA)
     B  generic graphite anode, each held-out cell's own C/20 capacity              (fitB)
@@ -35,7 +35,7 @@ from srcs import identification as ident, study as S       # noqa: E402
 plt.style.use(os.path.join(ROOT, 'journal.mplstyle'))
 mm = 1 / 25.4
 DEFAULT = ('A:fitA', 'B:fitB', 'C:caseC')
-COLORS = {'A': '#1F77B4', 'B': '#E1A100', 'C': '#2CA02C', 'C+': '#9467BD'}
+COLORS = {'A': '#0072B2', 'B': '#D55E00', 'C': '#009E73', 'C+': '#CC79A7'}
 LABELS = {'A': 'A: measured anode, C/20 capacity', 'B': 'B: generic anode, C/20 capacity',
           'C': 'C: generic anode, mean capacity', 'C+': 'C+: capacity from the first discharge'}
 
@@ -91,7 +91,7 @@ def main():
         xs = x0 + np.arange(len(cs))
         for j, (k, _) in enumerate(cases):
             v = [D[k].loc[c, 'rmse_mV'] if c in D[k].index else np.nan for c in cs]
-            ax.bar(xs + (j - 1) * w, v, w, color=COLORS.get(k, '#9467BD'), edgecolor='k', linewidth=0.3,
+            ax.bar(xs + (j - 1) * w, v, w, color=COLORS.get(k, '#CC79A7'), edgecolor='k', linewidth=0.3,
                    label=LABELS.get(k, k) if gi == 0 else None)
         means = ' / '.join('%.1f' % np.nanmean([D[k].loc[c, 'rmse_mV'] for c in cs if c in D[k].index]) for k, _ in cases)
         ax.text(xs.mean(), 1.02, '%s $^\\circ$C\nmean %s: %s mV' % (str(T).replace('-', '−'),'/'.join(k for k, _ in cases), means),

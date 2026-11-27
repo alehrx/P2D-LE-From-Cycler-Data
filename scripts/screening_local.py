@@ -1,7 +1,7 @@
 """
 screening_local.py
 ==================
-Step 0 of the identification around a pre-calibrated point: which candidate groups the calibration
+Step 2.2 of the identification, around the pre-calibrated point of step 2.1: which candidate groups the calibration
 tests can see within the uncertainty that remains after a short pre-calibration at 25 C, and which of them the
 tests can tell apart. A box drawn over the whole literature range makes every group "sensitive" (a Boeing 747 on
 a bridge tests the bridge, not whether the mass of a car matters); the box here is the one the data leave open.

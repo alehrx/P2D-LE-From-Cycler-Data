@@ -1,7 +1,7 @@
 """
 fig_groups.py
 =============
-Fig. 4 of the paper (Section 2.3): the window groups, for the pouch cell.
+Fig. 4 of the paper (Section 2.2): the window groups, for the pouch cell.
 
 One row of three panels:
   (a) the stoichiometries of the two electrodes against the discharged charge: the window x0-x100, y100-y0,
@@ -209,8 +209,8 @@ def main():
     Q = Qn * (x100 - x0)
     y0 = y100 + Q / Qp
 
-    # one row of three panels: (a) stoichiometries, (b) OCPs, (c) OCV. The MPM-LE schematic
-    # (panel_a) and the particle (panel_b) are left out: Fig. 1 and the step schematic of Section 2.2 show them.
+    # one row of three panels: (a) stoichiometries, (b) OCPs, (c) OCV. The P2D-LE schematic
+    # (panel_a) and the particle (panel_b) are left out: Figs. 1 and 3 show them.
     fig, (axs, axd, axe) = plt.subplots(1, 3, figsize=(180 * mm, 62 * mm), layout='constrained')
     panel_c(axs, x100, y100, Qn, Qp, Q)
     label(axs, 'a', x=-0.12, y=1.10)

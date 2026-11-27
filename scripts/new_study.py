@@ -5,16 +5,16 @@ A new study (configs/<name>.json) from one of the paper's cases, with the cells 
 
     python scripts/new_study.py fitB my_study --cal C04 C05 C06 --up C04 C05 C06 [--exclude C19]
 
-    --cal      calibration cells: their first cycles (VAL) enter the joint fit of step 2
+    --cal      calibration cells: their first cycles (VAL) enter the final fit of step 3
     --up       cells whose C/20 and HPPC rests give the cathode OCP and the stoichiometric limits (step 1);
                the first one that logged a full C/20 discharge gives U_p (default: --cal)
-    --ref      the cell whose HPPC and C/20 enter step 2 (default: the first --cal cell)
+    --ref      the cell whose HPPC and C/20 enter step 3 (default: the first --cal cell)
     --exclude  cells left out of everything; every other cell is held out (validation)
 
 Then, for the new study:
 
     python scripts/step1_window.py configs/my_study.json      # step 1: windows and cathode OCP
-    python scripts/fit_lm.py configs/my_study.json --fresh     # step 2: joint fit (GPU recommended)
+    python scripts/fit_lm.py configs/my_study.json --fresh     # step 3: final fit (GPU recommended)
     python make_figures.py --sets B:fitB X:my_study    # step 3: held-out figures, side by side with B
 
 The model, groups, bounds and search settings are those of the base case.
